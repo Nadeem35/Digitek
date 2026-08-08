@@ -6,3 +6,20 @@
 .textjstify {
   text-align: justify;
 }
+
+/* Logo sizing and visibility for navbar toggle */
+.navbar-brand img {
+  transition: opacity 200ms ease, width 200ms ease, height 200ms ease;
+}
+.logo-dark { display: inline-block; }
+.logo-light { display: none; }
+
+/* Default sizes (adjust if you have specific pixel sizes) */
+.logo-dark { width: 160px; height: 50px; }
+.logo-light { width: 160px; height: 50px; }
+
+@media (max-width: 991px) {
+  /* smaller logo on mobile when hamburger active */
+  .logo-dark { width: 140px; height: 44px; }
+  .logo-light { width: 140px; height: 44px; }
+}

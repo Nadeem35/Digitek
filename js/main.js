@@ -15,15 +15,55 @@
     // Initiate the wowjs
     new WOW().init();
 
-
-    // Sticky Navbar
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 45) {
-            $('.navbar').addClass('sticky-top shadow-sm');
+    // Helper: position navbar below topbar when topbar is visible
+    function updateNavbarTop() {
+        var $nav = $('.navbar');
+        var $top = $('#topbar');
+        var topH = ($top.length && $top.is(':visible')) ? $top.outerHeight() : 0;
+        if (!$nav.hasClass('scrolled') && !$nav.hasClass('menu-open')) {
+            $nav.css('top', topH + 'px');
         } else {
-            $('.navbar').removeClass('sticky-top shadow-sm');
+            $nav.css('top', '0');
         }
+    }
+
+    // Update navbar top on load and resize
+    $(window).on('load resize', function () {
+        updateNavbarTop();
     });
+
+
+    // Sticky Navbar and logo switch on scroll
+    $(window).on('scroll', function () {
+        var scrollTop = $(this).scrollTop();
+        var $nav = $('.navbar');
+        var $logoDarkNow = $('#logo-dark');
+        var $logoLightNow = $('#logo-light');
+
+        if (scrollTop > 45) {
+            $nav.addClass('sticky-top shadow-sm scrolled');
+            // avoid content jump: add padding equal to navbar height
+            var navH = $nav.outerHeight();
+            if (navH) $('body').css('padding-top', navH + 'px');
+            if ($logoDarkNow.length && $logoLightNow.length) {
+                $logoDarkNow.hide();
+                $logoLightNow.show().attr({ width: 140, height: 44 });
+            }
+        } else {
+            $nav.removeClass('sticky-top shadow-sm scrolled');
+            $('body').css('padding-top', '');
+            if ($logoDarkNow.length && $logoLightNow.length) {
+                $logoLightNow.hide();
+                $logoDarkNow.show().attr({ width: 160, height: 50 });
+            }
+        }
+
+        // Ensure navbar top position respects topbar visibility/state
+        updateNavbarTop();
+    });
+
+    // Run once to initialize navbar state based on initial scroll position
+    $(window).trigger('scroll');
     
     // Dropdown on mouse hover
     const $dropdown = $(".dropdown");
@@ -121,6 +161,41 @@
             }
         }
     });
+    
+    // Toggle logo between dark and light when navbar (hamburger) is opened/closed
+    var $navCollapse = $('#navbarCollapse');
+    var $logoDark = $('#logo-dark');
+    var $logoLight = $('#logo-light');
+
+    // Ensure initial state: dark logo visible
+    if ($logoDark.length && $logoLight.length) {
+        $logoDark.show();
+        $logoLight.hide();
+
+        // When collapse/show (menu opens) -> show light logo and fix navbar
+        $navCollapse.on('show.bs.collapse', function () {
+            var $nav = $('.navbar');
+            $logoDark.hide();
+            $logoLight.show().attr({ width: 140, height: 44 });
+            $nav.addClass('menu-open');
+            // add body padding to avoid content jump when navbar becomes fixed
+            var navH = $nav.outerHeight();
+            if (navH) $('body').css('padding-top', navH + 'px');
+            // when menu opens, navbar should be fixed at top
+            $nav.css('top', '0');
+        });
+
+        // When collapse/hide (menu closes) -> show dark logo and restore navbar
+        $navCollapse.on('hide.bs.collapse', function () {
+            var $nav = $('.navbar');
+            $logoLight.hide();
+            $logoDark.show().attr({ width: 160, height: 50 });
+            $nav.removeClass('menu-open');
+            $('body').css('padding-top', '');
+            // restore navbar top based on topbar visibility
+            updateNavbarTop();
+        });
+    }
     
 })(jQuery);
 
