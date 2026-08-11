@@ -4,6 +4,8 @@
     --secondary: #34AD54;
     --light: #EEF9FF;
     --dark: #091E3E;
+    --topbar-height: 45px;
+    --navbar-height: 56px;
 }
 
 
@@ -127,8 +129,8 @@ h6,
 .navbar-dark .navbar-nav .nav-link {
     font-family: 'Nunito', sans-serif;
     position: relative;
-    margin-left: 25px;
-    padding: 35px 0;
+    margin-left: 20px;
+    padding: 0.65rem 0;
     color: #FFFFFF;
     font-size: 18px;
     font-weight: 600;
@@ -184,7 +186,7 @@ h6,
     .navbar-dark .navbar-nav .nav-link,
     .navbar-dark .navbar-nav .nav-link.show,
     .sticky-top.navbar-dark .navbar-nav .nav-link {
-        padding: 10px 0;
+        padding: 0.55rem 0;
         color: var(--dark);
         font-size: 16px;
     }
@@ -211,22 +213,21 @@ h6,
     #header-carousel .carousel-inner,
     #header-carousel .carousel-item,
     #header-carousel .carousel-item img {
-        min-height: 95vh;
+        min-height: 55vh;
     }
 }
 
 @media (min-width: 992px) {
     .navbar-dark {
-        position: absolute;
+        position: relative;
         width: 100%;
-        top: 0;
         left: 0;
         border-bottom: 1px solid rgba(256, 256, 256, .1);
         z-index: 999;
     }
     
     .sticky-top.navbar-dark {
-        position: fixed;
+        position: relative;
         background: #FFFFFF;
     }
 
@@ -271,6 +272,13 @@ h6,
 /* Carousel overlay and responsive behavior */
 #header-carousel {
     position: relative;
+    height: clamp(360px, 55vh, 900px);
+}
+
+#header-carousel .carousel-inner,
+#header-carousel .carousel-item,
+#header-carousel .carousel-item img {
+    height: 100%;
 }
 
 #header-carousel .carousel-item {
@@ -290,7 +298,6 @@ h6,
 
 #header-carousel .carousel-item img {
     width: 100%;
-    height: 95vh;
     object-fit: cover;
     display: block;
 }
@@ -308,16 +315,16 @@ h6,
     z-index: 3;
 }
 
-/* smaller heights on narrow screens */
+/* smaller heights on narrow screens: reduce clamp on tablets/phones */
 @media (max-width: 991.98px) {
-    #header-carousel .carousel-item img {
-        height: 55vh;
+    #header-carousel {
+        height: clamp(320px, 50vh, 700px);
     }
 }
 
 @media (max-width: 576px) {
-    #header-carousel .carousel-item img {
-        height: 45vh;
+    #header-carousel {
+        height: clamp(260px, 45vh, 520px);
     }
     .carousel-caption {
         padding-top: 3rem;
@@ -557,7 +564,7 @@ h6,
 @media (min-width: 991.98px) {
     .facts {
         position: relative;
-        margin-top: -75px;
+        margin-top: 0;
         z-index: 1;
     }
 }
@@ -593,32 +600,42 @@ h6,
 /* Keep navbar visible on scroll and swap logo colors */
 .navbar {
     z-index: 1100;
+    position: sticky;
+    top: 0;
+    width: 100%;
     transition: background-color 200ms ease, box-shadow 200ms ease, padding 200ms ease;
+    display: flex;
+    align-items: center;
+    padding: 0.35rem 0;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    box-shadow: none;
 }
 
-/* Force navbar fixed when appropriate classes are present to avoid overrides */
-.navbar.fixed-top,
-.navbar.sticky-top,
+.navbar.scrolled {
+    background-color: rgba(255,255,255,0.96) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
+}
+
+.navbar.scrolled .navbar-nav .nav-link,
+.navbar.scrolled .navbar-brand h1 {
+    color: var(--dark) !important;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    /* height: 100%; */
+}
+
+/* Force navbar fixed when menu opens */
 .navbar.menu-open {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
     width: 100% !important;
-}
-
-@media (min-width: 992px) {
-    /* Keep the navbar below the desktop topbar when both are visible */
-    .navbar.fixed-top {
-        top: 45px !important;
-    }
-}
-
-/* When scrolled, ensure navbar is fixed and styled for readability */
-.navbar.scrolled,
-.sticky-top.scrolled {
-    background-color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background-color: rgba(255,255,255,0.96) !important;
 }
 
 /* Logo visibility when scrolled vs top */
@@ -630,19 +647,7 @@ h6,
 /* Optional: tweak logo sizes when scrolled */
 .navbar .logo-light, .navbar .logo-dark { height: auto; }
 .navbar.scrolled .logo-light { width: 200px; height: 45px; }
-.navbar:not(.scrolled) .logo-dark { width: 200px; height: 45px; }
-
-/* Ensure navbar stays fixed at top when hamburger menu is open on small screens */
-.navbar.menu-open {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 1200;
-    background-color: #ffffff;
-}
-
+ .navbar:not(.scrolled) .logo-dark { width: 200px; height: 45px; }
 /* When menu is open, make sure collapse panel appears below the fixed navbar */
 .navbar.menu-open .navbar-collapse {
     margin-top: 0.5rem;

@@ -15,19 +15,18 @@
     // Initiate the wowjs
     new WOW().init();
 
-    // Helper: position navbar below topbar when topbar is visible
+    // Helper: preserve layout when navbar becomes fixed during scroll
     function updateNavbarTop() {
         var $nav = $('.navbar');
-        var $top = $('#topbar');
-        var topH = ($top.length && $top.is(':visible')) ? $top.outerHeight() : 0;
-        if (!$nav.hasClass('scrolled') && !$nav.hasClass('menu-open')) {
-            $nav.css('top', topH + 'px');
+        var navH = $nav.outerHeight();
+        if ($nav.hasClass('scrolled') || $nav.hasClass('menu-open')) {
+            $('body').css('padding-top', navH + 'px');
         } else {
-            $nav.css('top', '0');
+            $('body').css('padding-top', '');
         }
     }
 
-    // Update navbar top on load and resize
+    // Update navbar state on load and resize
     $(window).on('load resize', function () {
         updateNavbarTop();
     });
@@ -41,24 +40,20 @@
         var $logoLightNow = $('#logo-light');
 
         if (scrollTop > 45) {
-            $nav.addClass('sticky-top shadow-sm scrolled');
-            // avoid content jump: add padding equal to navbar height
-            var navH = $nav.outerHeight();
-            if (navH) $('body').css('padding-top', navH + 'px');
+            $nav.addClass('shadow-sm scrolled');
             if ($logoDarkNow.length && $logoLightNow.length) {
                 $logoDarkNow.hide();
                 $logoLightNow.show().attr({ width: 140, height: 44 });
             }
         } else {
-            $nav.removeClass('sticky-top shadow-sm scrolled');
-            $('body').css('padding-top', '');
+            $nav.removeClass('shadow-sm scrolled');
             if ($logoDarkNow.length && $logoLightNow.length) {
                 $logoLightNow.hide();
                 $logoDarkNow.show().attr({ width: 160, height: 50 });
             }
         }
 
-        // Ensure navbar top position respects topbar visibility/state
+        // Ensure navbar top position respects fixed layout spacing
         updateNavbarTop();
     });
 

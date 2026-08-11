@@ -15,8 +15,12 @@
 .logo-light { display: none; }
 
 /* Default sizes (adjust if you have specific pixel sizes) */
-.logo-dark { width: 160px; height: 50px; }
-.logo-light { width: 160px; height: 50px; }
+.logo-dark,
+.logo-light {
+  width: auto;
+  height: 45px;
+  max-height: 45px;
+}
 
 @media (max-width: 991px) {
   /* smaller logo on mobile when hamburger active */
