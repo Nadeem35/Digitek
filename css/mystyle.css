@@ -27,3 +27,11 @@
   .logo-dark { width: 140px; height: 44px; }
   .logo-light { width: 140px; height: 44px; }
 }
+
+/* Reduce horizontal navbar padding on small screens to match natural spacing */
+@media (max-width: 576px) {
+  .navbar.px-5 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
