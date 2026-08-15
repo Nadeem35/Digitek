@@ -19,7 +19,7 @@
     function updateNavbarTop() {
         var $nav = $('.navbar');
         var navH = $nav.outerHeight();
-        if ($nav.hasClass('scrolled') || $nav.hasClass('menu-open')) {
+        if ($nav.hasClass('scrolled') || $nav.hasClass('menu-open') || $nav.hasClass('fixed-top')) {
             $('body').css('padding-top', navH + 'px');
         } else {
             $('body').css('padding-top', '');
@@ -39,14 +39,14 @@
         var $logoDarkNow = $('#logo-dark');
         var $logoLightNow = $('#logo-light');
 
-        if (scrollTop > 45) {
-            $nav.addClass('shadow-sm scrolled');
+        if (scrollTop > 0) {
+            $nav.addClass('shadow-sm scrolled fixed-top');
             if ($logoDarkNow.length && $logoLightNow.length) {
                 $logoDarkNow.hide();
                 $logoLightNow.show().attr({ width: 140, height: 44 });
             }
         } else {
-            $nav.removeClass('shadow-sm scrolled');
+            $nav.removeClass('shadow-sm scrolled fixed-top');
             if ($logoDarkNow.length && $logoLightNow.length) {
                 $logoLightNow.hide();
                 $logoDarkNow.show().attr({ width: 160, height: 50 });
