@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Har Ghar Shiksha Abhiyaan</title>
+<meta name="description" content="Har Ghar Shiksha Abhiyaan — spreading awareness and access to education in rural communities.">
+<style>
+  :root{
+    --green:#0b6b43; --deep:#063d2a; --mint:#e8f6ee; --saffron:#f59e0b;
+    --gold:#ffc857; --cream:#fffaf2; --ink:#16372b; --muted:#60766b; --white:#fff;
+    --line:#e9dfcf; --shadow:0 24px 70px rgba(6,61,42,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%}
+  .nav{position:fixed;top:0;width:100%;z-index:30;background:rgba(255,250,242,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(233,223,207,.8)}
+  .nav-inner{max-width:1200px;margin:auto;padding:12px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:950;color:var(--deep);letter-spacing:.1px;font-size:1.03rem}
+  .logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,var(--green),var(--saffron));display:grid;place-items:center;box-shadow:0 9px 20px rgba(11,107,67,.2)}
+  .logo svg{width:27px;height:27px;fill:#fff}
+  .nav-links{display:flex;align-items:center;gap:24px;font-size:.91rem;font-weight:800}
+  .nav-links a{color:#345148}.nav-links a:hover{color:var(--saffron)}
+  .nav-social{display:flex;gap:8px;margin-left:5px}
+  .social{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:#edf6f0;color:var(--green);transition:.2s}
+  .social:hover{transform:translateY(-2px);background:var(--green);color:#fff}
+  .social svg{width:17px;height:17px;fill:currentColor}
+  .hero{min-height:100vh;padding:125px 22px 75px;display:grid;place-items:center;position:relative;overflow:hidden;background:
+    radial-gradient(circle at 80% 18%,#d7f0df 0 10%,transparent 28%),
+    radial-gradient(circle at 12% 80%,#ffe4ad 0 8%,transparent 24%),
+    linear-gradient(135deg,#eff9f2 0%,#fffaf2 56%,#fff3d9 100%)}
+  .hero:before{content:"";position:absolute;width:420px;height:420px;border:80px solid rgba(245,158,11,.08);border-radius:50%;right:-210px;bottom:-210px}
+  .hero-grid{max-width:1200px;width:100%;display:grid;grid-template-columns:1.02fr .98fr;gap:58px;align-items:center;position:relative;z-index:1}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:99px;background:#dcefe2;color:var(--deep);font-weight:900;font-size:.79rem;margin-bottom:18px;text-transform:uppercase;letter-spacing:.7px}
+  .eyebrow:before{content:"✦";color:var(--saffron)}
+  h1{font-size:clamp(3.2rem,6vw,6rem);line-height:.94;letter-spacing:-4px;color:var(--deep)}
+  h1 span{color:var(--saffron)}
+  .lead{font-size:1.14rem;color:#526960;max-width:650px;margin:25px 0}
+  .quote{font-size:1.48rem;font-weight:900;line-height:1.25;margin:22px 0;color:var(--ink);border-left:5px solid var(--saffron);padding-left:17px}
+  .buttons{display:flex;gap:13px;flex-wrap:wrap;margin-top:27px}
+  .btn{padding:13px 21px;border-radius:13px;font-weight:900;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+  .btn-primary{background:var(--green);color:#fff;box-shadow:0 12px 28px rgba(11,107,67,.23)}
+  .btn-primary:hover{transform:translateY(-2px);background:var(--deep)}
+  .btn-light{border:1px solid #d9cdb5;background:#fff;color:var(--green)}
+  .hero-art{position:relative;min-height:505px}
+  .photo-card{position:absolute;inset:20px 0 0 22px;border-radius:34px;overflow:hidden;box-shadow:var(--shadow);background:#ddd;border:8px solid rgba(255,255,255,.78)}
+  .photo-card img{width:100%;height:100%;object-fit:cover}
+  .photo-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(0,45,31,.58))}
+  .hero-caption{position:absolute;left:28px;bottom:27px;color:#fff;font-weight:900;font-size:1.08rem;max-width:310px}
+  .badge{position:absolute;background:#fff;padding:12px 15px;border-radius:17px;box-shadow:0 15px 35px rgba(29,78,54,.22);font-weight:850;z-index:2}
+  .badge.one{left:-8px;top:38px}.badge.two{right:-8px;bottom:35px}
+  .floating-icon{position:absolute;right:16px;top:-10px;width:64px;height:64px;border-radius:22px;background:var(--saffron);display:grid;place-items:center;color:#fff;box-shadow:0 15px 30px rgba(245,158,11,.28)}
+  .floating-icon svg{width:34px;height:34px;fill:currentColor}
+  section{padding:92px 22px}
+  .container{max-width:1200px;margin:auto}
+  .section-head{text-align:center;max-width:780px;margin:0 auto 48px}
+  .section-head h2{font-size:clamp(2.1rem,4vw,3.45rem);color:var(--deep);line-height:1.03;letter-spacing:-1.5px}
+  .section-head p{color:var(--muted);margin-top:13px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:31px;box-shadow:0 12px 35px rgba(80,61,23,.07);position:relative;overflow:hidden}
+  .card:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-35px;top:-35px;background:#eff8f1}
+  .icon{width:55px;height:55px;border-radius:17px;background:#e8f6ee;color:var(--green);display:grid;place-items:center;margin-bottom:17px;position:relative;z-index:1}
+  .icon svg{width:29px;height:29px;fill:currentColor}
+  .card h3{color:var(--deep);font-size:1.25rem;margin-bottom:8px}.card p{color:var(--muted)}
+  .story{background:linear-gradient(125deg,#063d2a,#0b6b43);color:#fff;position:relative;overflow:hidden}
+  .story:after{content:"";position:absolute;width:400px;height:400px;border:100px solid rgba(255,255,255,.04);border-radius:50%;right:-220px;top:-190px}
+  .story-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:55px;align-items:center;position:relative;z-index:1}
+  .story-img{height:520px;border-radius:30px;overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.24);border:7px solid rgba(255,255,255,.12)}
+  .story-img img{width:100%;height:100%;object-fit:cover}
+  .story h2{font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.03;letter-spacing:-1.4px}
+  .story p{color:#d7e9df;margin:18px 0}.story-quote{font-size:1.45rem;font-weight:900;border-top:1px solid #ffffff35;border-bottom:1px solid #ffffff35;padding:22px 0;margin-top:25px}
+  .story .eyebrow{background:#dff3e6}
+  .impact-band{background:#fff}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}
+  .stat{background:linear-gradient(145deg,#fff,#f5fbf6);border:1px solid var(--line);border-radius:22px;padding:28px;text-align:center}
+  .stat strong{display:block;font-size:2.35rem;color:var(--saffron);line-height:1.1}.stat span{font-weight:800;color:var(--muted)}
+  .gallery{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:230px 230px;gap:15px}
+  .gallery div{overflow:hidden;border-radius:20px;position:relative}.gallery img{width:100%;height:100%;object-fit:cover;transition:.35s}.gallery img:hover{transform:scale(1.05)}
+  .gallery .large{grid-row:span 2}.gallery div:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,45,31,.28))}
+  .cta{padding:95px 22px;background:radial-gradient(circle at 85% 15%,#fff 0 8%,transparent 30%),linear-gradient(120deg,#f8e2a9,#fffaf2)}
+  .cta-box{max-width:950px;margin:auto;text-align:center}.cta h2{font-size:clamp(2.4rem,5vw,4.3rem);color:var(--deep);line-height:1.02;letter-spacing:-2px}
+  .cta p{max-width:700px;margin:16px auto;color:var(--muted)}
+  .social-row{display:flex;justify-content:center;gap:10px;margin:28px 0 5px}
+  .social-row .social{width:42px;height:42px;background:#fff;border:1px solid #eadfca}
+  footer{background:#05291d;color:#cfe1d9;padding:34px 22px}.footer-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-brand{display:flex;align-items:center;gap:10px}.footer-brand strong{color:#fff}.footer-note{font-size:.9rem}
+  @media(max-width:920px){.nav-links{display:none}.hero-grid,.story-grid{grid-template-columns:1fr}.hero-art{min-height:440px}.cards,.stats{grid-template-columns:1fr}.story-img{height:430px}}
+  @media(max-width:560px){.nav-inner{padding:10px 15px}.brand{font-size:.9rem}.logo{width:39px;height:39px}.hero{padding:105px 16px 55px}.hero-art{min-height:350px}.photo-card{inset:10px 0 0 0;border-width:5px}.badge{font-size:.78rem;padding:9px 11px}.badge.one{left:0;top:20px}.badge.two{right:0;bottom:20px}.floating-icon{width:52px;height:52px;right:5px}.gallery{grid-template-columns:1fr;grid-template-rows:250px 180px 180px}.gallery .large{grid-row:auto}section{padding:70px 16px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#home">
+      <span class="logo" aria-label="Education logo">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 24 32 10l24 14-24 14L8 24Zm10 8v13c0 7 6 11 14 11s14-4 14-11V32l-14 8-14-8Z"/><path d="M55 27h5v18h-5z"/></svg>
+      </span>
+      Har Ghar Shiksha Abhiyaan
+    </a>
+    <div class="nav-links">
+      <a href="#mission">Our Mission</a><a href="#impact">Impact</a><a href="#volunteers">Volunteers</a><a href="#join">Join Us</a>
+      <div class="nav-social" aria-label="Social media">
+        <a class="social" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16a4.5 4.5 0 0 1 0-9Zm0 2A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5ZM17.5 6.2a1.3 1.3 0 1 1-1.3 1.3 1.3 1.3 0 0 1 1.3-1.3Z"/></svg></a>
+        <a class="social" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.4v3h2.7v8h3.4Z"/></svg></a>
+        <a class="social" href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.5-.4-5.1a2.8 2.8 0 0 0-2-2C19 4.5 12 4.5 12 4.5s-7 0-8.6.4a2.8 2.8 0 0 0-2 2C1 8.5 1 12 1 12s0 3.5.4 5.1a2.8 2.8 0 0 0 2 2c1.6.4 8.6.4 8.6.4s7 0 8.6-.4a2.8 2.8 0 0 0 2-2C23 15.5 23 12 23 12ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">A community movement for rural education</div>
+      <h1>Har Ghar <span>Shiksha</span> Abhiyaan</h1>
+      <p class="lead">Education can open doors, build confidence and create opportunity. We work with rural communities to make learning resources and awareness reach every child.</p>
+      <div class="quote">“Aao padhe, Milkar badhen, Badhayen Hindustan ko”</div>
+      <div class="buttons">
+        <a class="btn btn-primary" href="#join">Become a Volunteer</a>
+        <a class="btn btn-light" href="#mission">Learn About Our Work</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="photo-card">
+        <img src="https://shreegurudhamsewafoundation.in/content/uploads/5f2a8c9u9e6t7f4a6c0e1d3a9b2f8c7.png" alt="Volunteer teaching children in a rural Indian community" loading="eager">
+        <div class="photo-overlay"></div>
+        <div class="hero-caption">Together, we can bring books, learning and opportunity closer to every village.</div>
+      </div>
+      <div class="badge one">🎒 Books for brighter futures</div>
+      <div class="badge two">🇮🇳 Education for every child</div>
+      <div class="floating-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64"><path d="M8 24 32 10l24 14-24 14L8 24Zm10 8v13c0 7 6 11 14 11s14-4 14-11V32l-14 8-14-8Z"/><path d="M55 27h5v18h-5z"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="mission">
+  <div class="container">
+    <div class="section-head">
+      <h2>Shiksha par adhikar hai sab ka</h2>
+      <p>Our mission is simple: help remove the barriers that keep children in rural communities from learning, growing and dreaming bigger.</p>
+    </div>
+    <div class="cards">
+      <article class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H7a3 3 0 0 0-3 3V4.5ZM7 4a1 1 0 0 0-1 1v13.2c.3-.1.7-.2 1-.2h11V4H7Zm-1 17h14v2H6a3 3 0 0 1-3-3V6h2v14a1 1 0 0 0 1 1Z"/></svg></div><h3>Study Material</h3><p>We distribute books, notebooks, stationery and other essential learning resources to children who may not be able to afford them.</p></article>
+      <article class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 8-4v6h2V8L12 3Zm-6 8.2V16c0 2.8 3.6 5 6 5s6-2.2 6-5v-4.8l-6 3-6-3Z"/></svg></div><h3>Learning Support</h3><p>Volunteers encourage children through educational activities, mentoring and community-based learning initiatives.</p></article>
+      <article class="card"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 4V6l-5 4H3Zm11-1.5v7l2.5 2.5h2.2L16 15.5V8.5L18.7 6h-2.2L14 8.5ZM20 9.2v5.6c1.2-.6 2-1.6 2-2.8s-.8-2.2-2-2.8Z"/></svg></div><h3>Awareness</h3><p>We engage families and communities in conversations about the long-term value of education for every child.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="volunteers">
+  <div class="container story-grid">
+    <div class="story-img">
+      <img src="https://dhunfoundation.org/images/dhun-in-action/IMG_7203.jpg" alt="Volunteer distributing books and study materials to children in India">
+    </div>
+    <div>
+      <div class="eyebrow" style="background:#d5eee0">Our volunteers in action</div>
+      <h2>Small acts can create a brighter classroom.</h2>
+      <p>Our volunteers visit communities, listen to local needs and help children access basic study resources. A notebook, a book or a few hours of encouragement can make a meaningful difference.</p>
+      <p>We believe education should not depend on where a child is born or what their family can afford.</p>
+      <div class="story-quote">“When we educate one child, we strengthen an entire community.”</div>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="container">
+    <div class="section-head">
+      <h2>From awareness to action</h2>
+      <p>Every volunteer, donated book and shared message helps take the movement one step further.</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>100%</strong><span>Community-focused</span></div>
+      <div class="stat"><strong>1 Goal</strong><span>Education for every child</span></div>
+      <div class="stat"><strong>∞</strong><span>Potential unlocked</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <h2>Learning looks like possibility</h2>
+      <p>Be part of a movement that celebrates curiosity, confidence and opportunity.</p>
+    </div>
+    <div class="gallery">
+      <div class="large"><img src="https://unessafoundation.org/wp-content/uploads/2025/09/Literacy-for-Poor-Children-in-India.webp" alt="Children reading with a volunteer in rural India" loading="lazy"></div>
+      <div><img src="https://res.cloudinary.com/dvfarxhig/image/upload/v1709460464/syf/IMG_20231113_123215_yusuxy.jpg" alt="Volunteer supporting children with books in a rural Indian village" loading="lazy"></div>
+      <div><img src="https://www.nationalngofederation.in/assets/images/campaign/65513113de8721699819795.jpg" alt="Children receiving books during an education outreach activity" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="join">
+  <div class="cta-box">
+    <h2>Aao padhe. Milkar badhen.</h2>
+    <p>Volunteer your time, contribute study materials, or simply help spread awareness about the importance of education in rural areas.</p>
+    <a class="btn btn-primary" href="mailto:hello@example.org?subject=Har%20Ghar%20Shiksha%20Abhiyaan%20-%20Volunteer">I Want to Help</a>
+    <div class="social-row" aria-label="Follow the education movement">
+      <a class="social" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3.5A4.5 4.5 0 1 1 12 16a4.5 4.5 0 0 1 0-9Zm0 2A2.5 2.5 0 1 0 12 14.5 2.5 2.5 0 0 0 12 9.5Z"/></svg></a>
+      <a class="social" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.5 1.6-1.5h1.7V4.9c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V11H7.4v3h2.7v8h3.4Z"/></svg></a>
+      <a class="social" href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.5-.4-5.1a2.8 2.8 0 0 0-2-2C19 4.5 12 4.5 12 4.5s-7 0-8.6.4a2.8 2.8 0 0 0-2 2C1 8.5 1 12 1 12s0 3.5.4 5.1a2.8 2.8 0 0 0 2 2c1.6.4 8.6.4 8.6.4s7 0 8.6-.4a2.8 2.8 0 0 0 2-2C23 15.5 23 12 23 12ZM10 15.5v-7l6 3.5-6 3.5Z"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="logo"><svg viewBox="0 0 64 64"><path d="M8 24 32 10l24 14-24 14L8 24Zm10 8v13c0 7 6 11 14 11s14-4 14-11V32l-14 8-14-8Z"/><path d="M55 27h5v18h-5z"/></svg></span><div><strong>Har Ghar Shiksha Abhiyaan</strong><br>Education • Awareness • Community</div></div>
+    <div class="footer-note">© 2026 Community Education Initiative • Aao padhe, milkar badhen.</div>
+  </div>
+</footer>
+</body>
+</html>
