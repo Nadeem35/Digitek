@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>हर घर शिक्षा अभियान | Har Ghar Shiksha Abhiyaan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Hind:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blackboard:#233A2E;
+    --blackboard-dark:#1B2E24;
+    --chalk:#F5F1E4;
+    --turmeric:#E8A93E;
+    --marigold:#DC7A2C;
+    --terracotta:#A85C32;
+    --terracotta-dark:#8C4A27;
+    --madder:#A6382F;
+    --ink:#2B3A2F;
+    --paper:#F4EFDF;
+    --paper-line:#C9BFA0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Hind',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.chalk-font{font-family:'Kalam',cursive;}
+  .label{font-family:'Poppins',sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;font-weight:600;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky;top:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 6vw;
+    background:var(--blackboard);
+    border-bottom:3px dashed var(--turmeric);
+  }
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-mark{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--chalk);color:var(--blackboard);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Kalam',cursive;font-weight:700;font-size:1.3rem;
+    border:2px solid var(--turmeric);
+  }
+  .logo-text{color:var(--chalk);font-family:'Kalam',cursive;font-size:1.15rem;font-weight:700;}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{color:var(--chalk);text-decoration:none;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:500;opacity:.85;transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;color:var(--turmeric);}
+  .nav-cta{
+    background:var(--turmeric);color:var(--blackboard-dark);
+    padding:9px 18px;border-radius:4px;font-family:'Poppins',sans-serif;
+    font-weight:600;font-size:.82rem;text-decoration:none;
+  }
+  @media(max-width:800px){.nav-links{display:none;}}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(255,255,255,.03), transparent 40%),
+      var(--blackboard);
+    padding:90px 6vw 110px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:20px 20px;
+    pointer-events:none;
+  }
+  .hero-eyebrow{color:var(--turmeric);margin-bottom:22px;}
+  .hero h1{
+    color:var(--chalk);
+    font-size:clamp(2.4rem,6vw,4.6rem);
+    line-height:1.12;
+    font-weight:700;
+    text-shadow:0 0 1px rgba(245,241,228,.3);
+  }
+  .hero .hi{
+    display:block;font-size:.5em;color:var(--turmeric);margin-top:8px;font-weight:400;
+  }
+  .chalk-underline{
+    display:block;width:min(520px,80%);height:22px;margin:18px auto 0;
+  }
+  .tagline{
+    color:var(--chalk);
+    font-family:'Kalam',cursive;
+    font-size:clamp(1.15rem,2.6vw,1.6rem);
+    max-width:680px;margin:30px auto 0;
+    opacity:.95;
+  }
+  .tagline .hi-line{display:block;color:var(--turmeric);font-size:.85em;margin-top:6px;}
+  .hero-actions{
+    margin-top:44px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Poppins',sans-serif;font-weight:600;font-size:.9rem;
+    padding:14px 30px;border-radius:4px;text-decoration:none;
+    display:inline-block;transition:transform .18s ease, box-shadow .18s ease;
+    border:2px solid transparent;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--turmeric);color:var(--blackboard-dark);}
+  .btn-solid:hover{box-shadow:0 8px 20px rgba(232,169,62,.35);}
+  .btn-outline{border-color:var(--chalk);color:var(--chalk);}
+  .btn-outline:hover{background:var(--chalk);color:var(--blackboard-dark);}
+  .hero-doodles{position:absolute;inset:0;pointer-events:none;opacity:.9;}
+
+  /* ===== SIGNBOARD QUOTE ===== */
+  .signboard-wrap{background:var(--paper);padding:70px 6vw 30px;display:flex;justify-content:center;}
+  .signboard{
+    background:linear-gradient(180deg,var(--marigold),var(--terracotta-dark));
+    color:var(--chalk);
+    max-width:900px;width:100%;
+    padding:52px 8vw;
+    border-radius:6px;
+    text-align:center;
+    position:relative;
+    box-shadow:0 18px 40px -18px rgba(140,74,39,.55);
+    border:3px solid var(--terracotta-dark);
+  }
+  .signboard::before,.signboard::after{
+    content:"";position:absolute;top:-16px;width:14px;height:44px;
+    background:#5b3a24;border-radius:2px;
+  }
+  .signboard::before{left:14%;transform:rotate(-6deg);}
+  .signboard::after{right:14%;transform:rotate(6deg);}
+  .signboard .quote-hi{font-family:'Kalam',cursive;font-size:clamp(1.5rem,3.6vw,2.4rem);font-weight:700;}
+  .signboard .quote-translit{font-family:'Poppins',sans-serif;font-size:1rem;opacity:.92;margin-top:14px;}
+  .signboard .quote-en{font-size:.92rem;margin-top:6px;opacity:.8;}
+
+  /* ===== SECTION shared ===== */
+  section{padding:80px 6vw;}
+  .section-head{max-width:680px;margin:0 auto 48px;text-align:center;}
+  .section-head .label{color:var(--madder);}
+  .section-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-top:10px;color:var(--ink);}
+  .section-head p{margin-top:14px;color:#5b5747;font-size:1.02rem;line-height:1.6;}
+
+  /* ===== NOTEBOOK STATS ===== */
+  .notebook{
+    background:
+      linear-gradient(90deg, transparent 0 62px, var(--madder) 62px 64px, transparent 64px),
+      repeating-linear-gradient(var(--paper) 0 37px, var(--paper-line) 37px 38px);
+    border-radius:8px;
+    max-width:1000px;margin:0 auto;
+    padding:44px 8vw 44px 88px;
+    box-shadow:0 2px 18px rgba(0,0,0,.08);
+    border:1px solid #ddd3ae;
+  }
+  .notebook p{line-height:38px;font-size:1.02rem;color:#3a3626;}
+  .notebook p+p{margin-top:0;}
+  .stats-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+    margin-top:20px;padding-top:24px;
+  }
+  .stat{text-align:center;}
+  .stat .num{font-family:'Kalam',cursive;font-size:2.6rem;color:var(--madder);font-weight:700;line-height:1;}
+  .stat .cap{font-family:'Poppins',sans-serif;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;color:#6b6650;margin-top:8px;}
+  @media(max-width:700px){.stats-row{grid-template-columns:1fr;}.notebook{padding:36px 6vw;}
+    .notebook{background:linear-gradient(90deg, transparent 0 24px, var(--madder) 24px 26px, transparent 26px), repeating-linear-gradient(var(--paper) 0 37px, var(--paper-line) 37px 38px); padding-left:38px;}}
+
+  /* ===== WARLI ILLUSTRATION SECTION ===== */
+  .warli-section{background:var(--terracotta);position:relative;padding:90px 6vw;}
+  .warli-grid{
+    max-width:1100px;margin:0 auto;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center;
+  }
+  .warli-art{
+    background:var(--terracotta-dark);
+    border-radius:8px;padding:18px;
+    border:3px solid #6f3a1f;
+  }
+  .warli-caption{
+    text-align:center;font-family:'Poppins',sans-serif;font-size:.75rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--chalk);opacity:.75;margin-top:10px;
+  }
+  .warli-copy .label{color:var(--turmeric);}
+  .warli-copy h2{color:var(--chalk);font-size:clamp(1.7rem,3.4vw,2.3rem);margin-top:10px;}
+  .warli-copy p{color:#f3e7d5;line-height:1.7;margin-top:16px;font-size:1rem;}
+  .warli-copy .quote-strip{
+    margin-top:24px;padding:16px 20px;border-left:4px solid var(--turmeric);
+    font-family:'Kalam',cursive;color:var(--chalk);font-size:1.15rem;background:rgba(0,0,0,.12);border-radius:0 6px 6px 0;
+  }
+  @media(max-width:850px){.warli-grid{grid-template-columns:1fr;}}
+
+  /* ===== GET INVOLVED CARDS ===== */
+  .cards{
+    max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:26px;
+  }
+  .card{
+    background:var(--chalk);border-radius:8px;padding:34px 26px;
+    border:1px solid #e7e0c7;
+    box-shadow:0 4px 16px rgba(0,0,0,.05);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(0,0,0,.1);}
+  .card .icon-badge{
+    width:52px;height:52px;border-radius:50%;
+    background:var(--madder);color:var(--chalk);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .card h3{font-family:'Kalam',cursive;font-size:1.3rem;color:var(--ink);}
+  .card p{margin-top:10px;color:#5b5747;font-size:.94rem;line-height:1.6;}
+  @media(max-width:800px){.cards{grid-template-columns:1fr;}}
+
+  /* ===== FOOTER CTA ===== */
+  .footer-cta{
+    background:var(--blackboard-dark);text-align:center;padding:90px 6vw 60px;position:relative;overflow:hidden;
+  }
+  .footer-cta h2{
+    color:var(--chalk);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.3;
+  }
+  .footer-cta h2 .hi{display:block;color:var(--turmeric);font-size:.7em;margin-top:10px;}
+  .footer-cta .btn{margin-top:34px;}
+  footer{
+    background:var(--blackboard-dark);color:#c9c4ae;text-align:center;
+    padding:26px 6vw 34px;font-family:'Poppins',sans-serif;font-size:.8rem;
+    border-top:1px solid #33473b;
+  }
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-mark">अ</div>
+    <div class="logo-text">Har Ghar Shiksha</div>
+  </div>
+  <div class="nav-links">
+    <a href="#mission">अभियान</a>
+    <a href="#story">क्यों जरूरी</a>
+    <a href="#volunteers">स्वयंसेवक</a>
+    <a href="#involved">जुड़ें</a>
+  </div>
+  <a class="nav-cta" href="#involved">Join Now</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <svg class="hero-doodles" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#F5F1E4" stroke-width="2.4" fill="none" opacity="0.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- open book, top-left -->
+      <g transform="translate(60,60) rotate(-8)">
+        <path d="M0 10 C 20 0, 40 0, 55 10 L 55 46 C 40 36, 20 36, 0 46 Z"/>
+        <path d="M55 10 C 70 0, 90 0, 110 10 L 110 46 C 90 36, 70 36, 55 46 Z"/>
+        <line x1="10" y1="18" x2="45" y2="12"/>
+        <line x1="10" y1="27" x2="45" y2="21"/>
+        <line x1="65" y1="12" x2="100" y2="18"/>
+        <line x1="65" y1="21" x2="100" y2="27"/>
+      </g>
+      <!-- pencil, top right -->
+      <g transform="translate(870,90) rotate(35)">
+        <rect x="0" y="0" width="16" height="80" rx="2"/>
+        <path d="M0 80 L16 80 L8 100 Z"/>
+        <line x1="0" y1="14" x2="16" y2="14"/>
+      </g>
+      <!-- sun, bottom left -->
+      <g transform="translate(90,420)">
+        <circle cx="0" cy="0" r="22"/>
+        <line x1="0" y1="-34" x2="0" y2="-44"/>
+        <line x1="0" y1="34" x2="0" y2="44"/>
+        <line x1="-34" y1="0" x2="-44" y2="0"/>
+        <line x1="34" y1="0" x2="44" y2="0"/>
+        <line x1="-24" y1="-24" x2="-31" y2="-31"/>
+        <line x1="24" y1="24" x2="31" y2="31"/>
+        <line x1="24" y1="-24" x2="31" y2="-31"/>
+        <line x1="-24" y1="24" x2="-31" y2="31"/>
+      </g>
+      <!-- graduation cap bottom right -->
+      <g transform="translate(880,410)">
+        <path d="M0 0 L40 -14 L80 0 L40 14 Z"/>
+        <path d="M20 8 L20 26 C20 34, 60 34, 60 26 L60 8"/>
+        <line x1="76" y1="2" x2="76" y2="30"/>
+      </g>
+    </g>
+  </svg>
+
+  <div class="hero-eyebrow label">एक सामाजिक शिक्षा पहल · A Grassroots Education Movement</div>
+  <h1>Har Ghar Shiksha Abhiyaan
+    <span class="hi">हर घर शिक्षा अभियान</span>
+  </h1>
+
+  <svg class="chalk-underline" viewBox="0 0 520 22" preserveAspectRatio="none">
+    <path d="M6 14 C 100 4, 200 18, 300 10 S 460 4, 514 12" stroke="#E8A93E" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </svg>
+
+  <p class="tagline">
+    "Aao padhe, Milkar badhen, Badhayen Hindustan ko"
+    <span class="hi-line">"आओ पढ़ें, मिलकर बढ़ें, बढ़ाएं हिंदुस्तान को"</span>
+  </p>
+
+  <div class="hero-actions">
+    <a href="#involved" class="btn btn-solid">स्वयंसेवक बनें · Become a Volunteer</a>
+    <a href="#story" class="btn btn-outline">अभियान के बारे में जानें</a>
+  </div>
+</header>
+
+<!-- ============ SIGNBOARD QUOTE ============ -->
+<div class="signboard-wrap">
+  <div class="signboard reveal">
+    <div class="quote-hi">"शिक्षा पर अधिकार है सबका"</div>
+    <div class="quote-translit">"Shiksha par adhikar hai sab ka"</div>
+    <div class="quote-en">Education is the right of every single child — no matter their village, their means, or their circumstance.</div>
+  </div>
+</div>
+
+<!-- ============ MISSION / STORY (NOTEBOOK) ============ -->
+<section id="mission">
+  <div class="section-head reveal">
+    <div class="label">अभियान का उद्देश्य</div>
+    <h2>क्यों जरूरी है यह अभियान</h2>
+    <p>भारत के हज़ारों गाँवों में आज भी बच्चे सिर्फ इसलिए स्कूल नहीं जा पाते क्योंकि उनके पास किताबें, कॉपियाँ या यूनिफॉर्म खरीदने के पैसे नहीं होते। "हर घर शिक्षा अभियान" हर घर तक शिक्षा पहुँचाने की एक सामूहिक कोशिश है।</p>
+  </div>
+  <div class="notebook reveal">
+    <p>यह अभियान गाँव-गाँव जाकर स्वयंसेवकों के माध्यम से बच्चों को मुफ्त पढ़ाई की सामग्री, किताबें और मार्गदर्शन उपलब्ध कराता है — ताकि पैसों की कमी किसी भी बच्चे के सपनों के आड़े न आए।</p>
+    <div class="stats-row">
+      <div class="stat"><div class="num">120+</div><div class="cap">गाँव / Villages Reached</div></div>
+      <div class="stat"><div class="num">8,400+</div><div class="cap">बच्चे लाभान्वित / Children Supported</div></div>
+      <div class="stat"><div class="num">650+</div><div class="cap">स्वयंसेवक / Active Volunteers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WARLI ILLUSTRATION — VOLUNTEERS DISTRIBUTING BOOKS ============ -->
+<section class="warli-section" id="volunteers">
+  <div class="warli-grid">
+    <div class="warli-art reveal">
+      <svg viewBox="0 0 800 430" xmlns="http://www.w3.org/2000/svg">
+        <!-- sky texture dots -->
+        <g fill="#F5EDE0" opacity="0.35">
+          <circle cx="60" cy="40" r="2"/><circle cx="120" cy="70" r="2"/><circle cx="200" cy="35" r="2"/>
+          <circle cx="700" cy="50" r="2"/><circle cx="740" cy="90" r="2"/><circle cx="660" cy="30" r="2"/>
+          <circle cx="400" cy="25" r="2"/><circle cx="480" cy="55" r="2"/>
+        </g>
+        <!-- sun -->
+        <g stroke="#F5EDE0" stroke-width="2.5" fill="none" stroke-linecap="round" transform="translate(700,60)">
+          <circle r="20" fill="#F5EDE0" stroke="none"/>
+          <line x1="0" y1="-30" x2="0" y2="-40"/>
+          <line x1="0" y1="30" x2="0" y2="40"/>
+          <line x1="-30" y1="0" x2="-40" y2="0"/>
+          <line x1="30" y1="0" x2="40" y2="0"/>
+          <line x1="-21" y1="-21" x2="-28" y2="-28"/>
+          <line x1="21" y1="21" x2="28" y2="28"/>
+          <line x1="21" y1="-21" x2="28" y2="-28"/>
+          <line x1="-21" y1="21" x2="-28" y2="28"/>
+        </g>
+        <!-- birds -->
+        <g stroke="#F5EDE0" stroke-width="2.5" fill="none" stroke-linecap="round">
+          <path d="M120 50 q8 -10 16 0 q8 -10 16 0"/>
+          <path d="M170 75 q6 -8 12 0 q6 -8 12 0"/>
+        </g>
+        <!-- ground -->
+        <line x1="0" y1="360" x2="800" y2="360" stroke="#F5EDE0" stroke-width="3"/>
+        <g fill="#F5EDE0" opacity="0.4">
+          <circle cx="40" cy="375" r="2.5"/><circle cx="70" cy="385" r="2.5"/><circle cx="110" cy="378" r="2.5"/>
+          <circle cx="600" cy="380" r="2.5"/><circle cx="640" cy="390" r="2.5"/><circle cx="690" cy="376" r="2.5"/>
+          <circle cx="380" cy="395" r="2.5"/><circle cx="420" cy="385" r="2.5"/>
+        </g>
+
+        <!-- central tree -->
+        <g transform="translate(430,180)" stroke="#F5EDE0" stroke-width="4" fill="none" stroke-linecap="round">
+          <line x1="0" y1="180" x2="0" y2="60"/>
+          <line x1="0" y1="140" x2="-30" y2="100"/>
+          <line x1="0" y1="120" x2="32" y2="80"/>
+          <line x1="0" y1="90" x2="-24" y2="50"/>
+          <g fill="#F5EDE0" stroke="none">
+            <circle cx="0" cy="40" r="7"/>
+            <circle cx="-30" cy="90" r="6"/>
+            <circle cx="30" cy="70" r="6"/>
+            <circle cx="-22" cy="45" r="5"/>
+            <circle cx="18" cy="35" r="5"/>
+            <circle cx="-10" cy="60" r="5"/>
+            <circle cx="8" cy="58" r="5"/>
+          </g>
+        </g>
+
+        <!-- === Volunteers (left, taller figures) handing out books === -->
+        <!-- volunteer 1 -->
+        <g fill="#F5EDE0" transform="translate(150,240)">
+          <circle cx="0" cy="-58" r="10"/>
+          <path d="M-16 -46 L16 -46 L10 10 L-10 10 Z"/>
+          <line x1="-16" y1="-40" x2="-42" y2="-14" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <line x1="16" y1="-40" x2="30" y2="-10" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <line x1="-8" y1="10" x2="-20" y2="60" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <line x1="8" y1="10" x2="18" y2="60" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <!-- book stack held out -->
+          <rect x="20" y="-24" width="26" height="18" rx="1" transform="rotate(8 20 -24)"/>
+          <rect x="22" y="-30" width="26" height="18" rx="1" transform="rotate(8 22 -30)" opacity="0.85"/>
+        </g>
+        <!-- volunteer 2 -->
+        <g fill="#F5EDE0" transform="translate(215,255)">
+          <circle cx="0" cy="-54" r="9"/>
+          <path d="M-14 -43 L14 -43 L9 9 L-9 9 Z"/>
+          <line x1="-14" y1="-37" x2="-38" y2="-12" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <line x1="14" y1="-37" x2="26" y2="-8" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <line x1="-7" y1="9" x2="-18" y2="56" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <line x1="7" y1="9" x2="16" y2="56" stroke="#F5EDE0" stroke-width="4" stroke-linecap="round"/>
+          <!-- bag -->
+          <rect x="-42" y="-24" width="20" height="24" rx="3"/>
+        </g>
+
+        <!-- === Children (right, smaller figures) receiving books === -->
+        <!-- child 1 standing, reaching -->
+        <g fill="#F5EDE0" transform="translate(300,270)">
+          <circle cx="0" cy="-38" r="7"/>
+          <path d="M-10 -30 L10 -30 L6 8 L-6 8 Z"/>
+          <line x1="-10" y1="-26" x2="-24" y2="-32" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="10" y1="-26" x2="24" y2="-16" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="-5" y1="8" x2="-12" y2="42" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="5" y1="8" x2="12" y2="42" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <!-- child 2 sitting with open book -->
+        <g fill="#F5EDE0" transform="translate(370,300)">
+          <circle cx="0" cy="-34" r="7"/>
+          <path d="M-9 -27 L9 -27 L6 -2 L-6 -2 Z"/>
+          <line x1="-9" y1="-22" x2="-20" y2="-10" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="9" y1="-22" x2="20" y2="-10" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="-6" y1="-2" x2="-22" y2="14" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="6" y1="-2" x2="22" y2="14" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-16 12 L0 6 L16 12 L0 18 Z"/>
+        </g>
+        <!-- child 3 sitting -->
+        <g fill="#F5EDE0" transform="translate(440,308)">
+          <circle cx="0" cy="-32" r="6.5"/>
+          <path d="M-8 -25 L8 -25 L5 -2 L-5 -2 Z"/>
+          <line x1="-8" y1="-20" x2="-18" y2="-8" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="8" y1="-20" x2="18" y2="-8" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="-5" y1="-2" x2="-18" y2="12" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="5" y1="-2" x2="18" y2="12" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <path d="M-14 10 L0 5 L14 10 L0 15 Z"/>
+        </g>
+        <!-- child 4 small, waving -->
+        <g fill="#F5EDE0" transform="translate(510,275)">
+          <circle cx="0" cy="-30" r="6"/>
+          <path d="M-8 -24 L8 -24 L5 4 L-5 4 Z"/>
+          <line x1="-8" y1="-20" x2="-20" y2="-28" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="8" y1="-20" x2="16" y2="-4" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="-4" y1="4" x2="-10" y2="34" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+          <line x1="4" y1="4" x2="10" y2="34" stroke="#F5EDE0" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <!-- scattered books on ground -->
+        <g fill="#F5EDE0" opacity="0.9">
+          <rect x="255" y="345" width="18" height="12" rx="1" transform="rotate(-10 255 345)"/>
+          <rect x="560" y="350" width="18" height="12" rx="1" transform="rotate(12 560 350)"/>
+        </g>
+      </svg>
+      <div class="warli-caption">Warli-style folk art · स्वयंसेवक बच्चों को पढ़ाई की सामग्री सौंपते हुए</div>
+    </div>
+
+    <div class="warli-copy reveal">
+      <div class="label">स्वयंसेवकों की कहानी</div>
+      <h2>हर बच्चे तक पहुँचे किताब, हर सपने को मिले उड़ान</h2>
+      <p>हमारे स्वयंसेवक हर हफ्ते दूर-दराज़ के गाँवों में जाकर उन बच्चों को मुफ्त किताबें, कॉपियाँ, पेंसिल और यूनिफॉर्म बाँटते हैं जो इन्हें खरीद पाने में असमर्थ हैं। पेड़ की छाँव में बैठकर पढ़ना-सिखाना, यही इस अभियान की असली तस्वीर है।</p>
+      <div class="quote-strip">"एक किताब, एक भविष्य — आओ मिलकर बदलें।"</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GET INVOLVED ============ -->
+<section id="involved">
+  <div class="section-head reveal">
+    <div class="label">आप कैसे जुड़ सकते हैं</div>
+    <h2>अभियान से जुड़ें, बदलाव की शुरुआत करें</h2>
+    <p>चाहे आपके पास समय हो, संसाधन हों या सिर्फ आवाज़ — हर योगदान मायने रखता है।</p>
+  </div>
+  <div class="cards">
+    <div class="card reveal">
+      <div class="icon-badge">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      </div>
+      <h3>किताबें दान करें</h3>
+      <p>अपनी पुरानी किताबें, कॉपियाँ या स्कूल सामग्री दान करें और किसी बच्चे की पढ़ाई की शुरुआत बनें।</p>
+    </div>
+    <div class="card reveal">
+      <div class="icon-badge">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>स्वयंसेवक बनें</h3>
+      <p>अपने गाँव या नज़दीकी क्षेत्र में जाकर बच्चों को पढ़ाएं और सामग्री वितरण अभियान में शामिल हों।</p>
+    </div>
+    <div class="card reveal">
+      <div class="icon-badge">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <h3>एक बच्चे को प्रायोजित करें</h3>
+      <p>मासिक योगदान से किसी एक बच्चे की पूरे साल की पढ़ाई का खर्च वहन करें।</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER CTA ============ -->
+<div class="footer-cta reveal">
+  <h2>"Aao padhe, Milkar badhen,
+    <span class="hi">Badhayen Hindustan ko"</span>
+  </h2>
+  <a href="#involved" class="btn btn-solid">अभी जुड़ें · Join the Movement</a>
+</div>
+
+<footer>
+  © 2026 Har Ghar Shiksha Abhiyaan — एक सामाजिक शिक्षा जागरूकता पहल। शिक्षा सबका अधिकार है।
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+  }, {threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
